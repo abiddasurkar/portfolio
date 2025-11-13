@@ -8,7 +8,7 @@ const ExperiencePage = () => {
     <div className="min-h-screen bg-gray-50 py-20">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Professional Experience</h2>
-        
+
         {experience.map((exp, idx) => (
           <div key={idx} className="bg-white rounded-xl shadow-lg p-8 mb-8">
             <div className="flex justify-between items-start mb-4 flex-wrap">

@@ -11,8 +11,8 @@ import ContactPage from './pages/ContactPage';
 const App = () => {
   return (
     <AppProvider>
-      {/* 👇 Use repo name here */}
-      <Router basename="/portfolio">
+      {/* Use dynamic basename for different environments */}
+      <Router basename={process.env.NODE_ENV === 'production' ? '/portfolio' : '/'}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
@@ -21,6 +21,8 @@ const App = () => {
             <Route path="experience" element={<ExperiencePage />} />
             <Route path="contact" element={<ContactPage />} />
           </Route>
+          {/* Add a catch-all route for GitHub Pages 404 handling */}
+          <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </Router>
     </AppProvider>

@@ -24,11 +24,11 @@ const HomePage = () => {
               {user.title}
             </p>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-              3+ years of expertise in React, Next.js, and Azure cloud deployment. 
-              Specialized in modernizing enterprise applications, performance optimization, 
+              3+ years of expertise in React, Next.js, and Azure cloud deployment.
+              Specialized in modernizing enterprise applications, performance optimization,
               and building scalable frontend solutions.
             </p>
-            
+
             <div className="flex justify-center space-x-6 mb-12">
               <div className="flex items-center text-gray-600">
                 <MapPin size={18} className="mr-2 text-blue-600" />
@@ -45,13 +45,13 @@ const HomePage = () => {
             </div>
 
             <div className="flex justify-center space-x-4">
-              <Link 
+              <Link
                 to="/projects"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
                 View Projects
               </Link>
-              <Link 
+              <Link
                 to="/contact"
                 className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
               >
@@ -101,7 +101,7 @@ const HomePage = () => {
               </span>
             ))}
           </div>
-          
+
           {/* Gulf-specific badges */}
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
             <h3 className="text-xl font-semibold mb-4 text-gray-800">Gulf Region Ready</h3>

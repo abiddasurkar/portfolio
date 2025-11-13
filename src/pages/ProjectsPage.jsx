@@ -20,17 +20,17 @@ const ProjectsPage = () => {
   const filteredProjects = useMemo(() => {
     let result = projects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           project.tech.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCategory = selectedCategory === 'All' || 
-                             (project.categories && project.categories.includes(selectedCategory));
-      
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.tech.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchesCategory = selectedCategory === 'All' ||
+        (project.categories && project.categories.includes(selectedCategory));
+
       return matchesSearch && matchesCategory;
     });
 
     // Sort projects
-    switch(sortBy) {
+    switch (sortBy) {
       case 'newest':
         result.sort((a, b) => new Date(b.date || b.id) - new Date(a.date || a.id));
         break;
@@ -135,11 +135,10 @@ const ProjectsPage = () => {
                       <button
                         key={category}
                         onClick={() => setSelectedCategory(category)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                          selectedCategory === category
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category
                             ? 'bg-blue-600 text-white shadow-md'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
+                          }`}
                       >
                         {category}
                       </button>
@@ -194,8 +193,8 @@ const ProjectsPage = () => {
 
         {/* Projects Grid */}
         {filteredProjects.length > 0 ? (
-          <div className={viewMode === 'grid' 
-            ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8" 
+          <div className={viewMode === 'grid'
+            ? "grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             : "grid gap-6"
           }>
             {filteredProjects.map(project => (

@@ -15,15 +15,15 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate form submission (replace with actual API call)
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       console.log('Form submitted:', contactForm);
       setIsSubmitted(true);
       resetContactForm();
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
@@ -53,7 +53,7 @@ const ContactPage = () => {
           {/* Contact Information */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
-            
+
             <div className="space-y-6">
               <div className="flex items-start">
                 <div className="bg-blue-100 p-3 rounded-lg mr-4">
@@ -95,9 +95,9 @@ const ContactPage = () => {
               <h4 className="font-medium text-gray-800 mb-4">Follow Me</h4>
               <div className="flex space-x-4">
                 {user.github && (
-                  <a 
-                    href={user.github} 
-                    target="_blank" 
+                  <a
+                    href={user.github}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors group"
                     aria-label="GitHub"
@@ -106,9 +106,9 @@ const ContactPage = () => {
                   </a>
                 )}
                 {user.linkedin && (
-                  <a 
-                    href={user.linkedin} 
-                    target="_blank" 
+                  <a
+                    href={user.linkedin}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-blue-100 rounded-lg hover:bg-blue-200 transition-colors group"
                     aria-label="LinkedIn"
@@ -131,7 +131,7 @@ const ContactPage = () => {
           {/* Contact Form */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">Send a Message</h3>
-            
+
             {isSubmitted ? (
               <div className="text-center py-8">
                 <div className="bg-green-100 p-4 rounded-full inline-flex mb-4">
@@ -147,8 +147,8 @@ const ContactPage = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
                     <div className="relative">
                       <User size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         name="name"
                         value={contactForm.name}
                         onChange={handleInputChange}
@@ -162,8 +162,8 @@ const ContactPage = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                     <div className="relative">
                       <Mail size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                      <input 
-                        type="email" 
+                      <input
+                        type="email"
                         name="email"
                         value={contactForm.email}
                         onChange={handleInputChange}
@@ -177,8 +177,8 @@ const ContactPage = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="subject"
                     value={contactForm.subject}
                     onChange={handleInputChange}
@@ -189,8 +189,8 @@ const ContactPage = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                  <textarea 
-                    rows={5} 
+                  <textarea
+                    rows={5}
                     name="message"
                     value={contactForm.message}
                     onChange={handleInputChange}
@@ -200,8 +200,8 @@ const ContactPage = () => {
                   />
                 </div>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg disabled:opacity-50 disabled:transform-none disabled:hover:shadow-md flex items-center justify-center"
                 >

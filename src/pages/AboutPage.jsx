@@ -9,12 +9,12 @@ const AboutPage = () => {
   const [expandedCert, setExpandedCert] = useState(false);
   const [imageError, setImageError] = useState(false); // Define imageError state
 
-// Paths to files in public folder
-const resumePath = process.env.PUBLIC_URL + '/AbidDasurkar_Frontend_NextJS_Developer.pdf';
-const resumeFileName = 'AbidDasurkar_Frontend_NextJS_Developer.pdf';
-const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
+  // Paths to files in public folder
+  const resumePath = process.env.PUBLIC_URL + '/AbidDasurkar_Frontend_NextJS_Developer.pdf';
+  const resumeFileName = 'AbidDasurkar_Frontend_NextJS_Developer.pdf';
+  const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
 
-  
+
   // Toggle certifications expansion
   const toggleCertifications = () => {
     setExpandedCert(!expandedCert);
@@ -43,34 +43,34 @@ const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
             {/* Profile Section */}
             <div className="lg:col-span-1">
               <div className="text-center lg:text-left mb-8">
-{/* Profile Image */}
-<div className="relative inline-block mb-6">
-  <div className="w-56 h-56 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto flex items-center justify-center shadow-lg overflow-hidden">
-    {imageError ? (
-      // Fallback if image fails to load
-      <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-        <span className="text-white text-4xl font-bold">
-          {user.name.split(' ').map(n => n[0]).join('')}
-        </span>
-      </div>
-    ) : (
-      <img
-  src={profileImagePath}
-  alt={`${user.name} - ${user.title}`}
-  className="w-full h-full object-cover"
-  onLoad={() => console.log("✅ Image loaded:", profileImagePath)}
-  onError={(e) => {
-    console.error("❌ Image failed to load:", profileImagePath, e);
-    setImageError(true);
-  }}
-  loading="lazy"
-/>
-    )}
-  </div>
-  <div className="absolute -bottom-2 -right-2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-md">
-    {user.title}
-  </div>
-</div>
+                {/* Profile Image */}
+                <div className="relative inline-block mb-6">
+                  <div className="w-56 h-56 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto flex items-center justify-center shadow-lg overflow-hidden">
+                    {imageError ? (
+                      // Fallback if image fails to load
+                      <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                        <span className="text-white text-4xl font-bold">
+                          {user.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                    ) : (
+                      <img
+                        src={profileImagePath}
+                        alt={`${user.name} - ${user.title}`}
+                        className="w-full h-full object-cover"
+                        onLoad={() => console.log("✅ Image loaded:", profileImagePath)}
+                        onError={(e) => {
+                          console.error("❌ Image failed to load:", profileImagePath, e);
+                          setImageError(true);
+                        }}
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-md">
+                    {user.title}
+                  </div>
+                </div>
 
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">{user.name}</h2>
                 <p className="text-gray-600 mb-6">{user.tagline || "Frontend Developer & UI/UX Enthusiast"}</p>
@@ -100,8 +100,8 @@ const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
                 </div>
 
                 {/* Download Resume Button */}
-                <a 
-                  href={resumePath} 
+                <a
+                  href={resumePath}
                   download={resumeFileName}
                   className="block w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-6 rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg flex items-center justify-center"
                 >
@@ -123,8 +123,8 @@ const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
                   and Azure cloud infrastructure with Docker containerization.`}
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  Passionate about creating intuitive user experiences and solving complex problems through clean, 
-                  efficient code. Always eager to learn new technologies and methodologies to stay at the forefront 
+                  Passionate about creating intuitive user experiences and solving complex problems through clean,
+                  efficient code. Always eager to learn new technologies and methodologies to stay at the forefront
                   of web development.
                 </p>
               </div>
@@ -134,21 +134,19 @@ const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
                 <div className="flex border-b border-gray-200 mb-6">
                   <button
                     onClick={() => setActiveTab('skills')}
-                    className={`px-4 py-2 font-medium text-sm transition-all duration-300 ${
-                      activeTab === 'skills' 
-                        ? 'text-blue-600 border-b-2 border-blue-600' 
+                    className={`px-4 py-2 font-medium text-sm transition-all duration-300 ${activeTab === 'skills'
+                        ? 'text-blue-600 border-b-2 border-blue-600'
                         : 'text-gray-500 hover:text-gray-700'
-                    }`}
+                      }`}
                   >
                     Skills & Expertise
                   </button>
                   <button
                     onClick={() => setActiveTab('education')}
-                    className={`px-4 py-2 font-medium text-sm transition-all duration-300 ${
-                      activeTab === 'education' 
-                        ? 'text-blue-600 border-b-2 border-blue-600' 
+                    className={`px-4 py-2 font-medium text-sm transition-all duration-300 ${activeTab === 'education'
+                        ? 'text-blue-600 border-b-2 border-blue-600'
                         : 'text-gray-500 hover:text-gray-700'
-                    }`}
+                      }`}
                   >
                     Education
                   </button>
@@ -165,8 +163,8 @@ const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {skillCategory.items.map((skill, idx) => (
-                            <span 
-                              key={idx} 
+                            <span
+                              key={idx}
                               className="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-700 shadow-sm hover:shadow-md transition-shadow"
                             >
                               {skill}
@@ -214,9 +212,9 @@ const profileImagePath = process.env.PUBLIC_URL + '/user.jpg';
                         <span className="text-gray-700">{cert.name}</span>
                       </div>
                       {cert.url && (
-                        <a 
-                          href={cert.url} 
-                          target="_blank" 
+                        <a
+                          href={cert.url}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-600 hover:text-blue-800 ml-2 flex items-center"
                           aria-label={`View ${cert.name} certification`}
