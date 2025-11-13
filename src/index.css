@@ -1,3 +1,37 @@
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌐 Smooth page scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 🎨 Text selection styling */
+::selection {
+  background-color: rgba(34, 211, 238, 0.2); /* cyan-400 with opacity */
+  color: white;
+}
+
+::-moz-selection {
+  background-color: rgba(34, 211, 238, 0.2);
+  color: white;
+}
+
+/* 🖱️ Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.5); /* gray-900 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #06b6d4, #8b5cf6); /* cyan → purple */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0891b2, #7c3aed); /* darker cyan → purple */
+}

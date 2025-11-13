@@ -59,3 +59,37 @@ const ExperiencePage = () => {
 };
 
 export default ExperiencePage;
+
+
+// =============================================
+// EXPERIENCE PAGE COMPONENT - SUMMARY
+// =============================================
+
+// This React component displays professional experience and technical skills
+
+// EXPERIENCE SECTION:
+// - Maps through experience data to display each job position
+// - Each experience card contains:
+//   * Job title, company name, and role descriptions
+//   * Duration with calendar icon
+//   * List of achievements with zap/bullet icons
+// - Uses white cards with shadow for clean presentation
+
+// TECHNICAL SKILLS SECTION:
+// - Grid layout showing skill categories in two columns
+// - Each category displays:
+//   * Category title with code icon
+//   * Skills as badge tags with blue styling
+// - Responsive design for mobile and desktop
+
+// UI FEATURES:
+// - Clean gray background for overall page
+// - White cards with rounded corners and shadows
+// - Blue accent colors for company names and icons
+// - Consistent spacing and typography hierarchy
+
+// DATA INTEGRATION:
+// - Imports experience data from external file
+// - Imports skill categories from skills data file
+// - Uses Lucide React icons (Calendar, Code, Zap)
+// =============================================

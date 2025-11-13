@@ -5,28 +5,28 @@ import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
-import ExperiencePage from './pages/ExperiencePage';
 import ContactPage from './pages/ContactPage';
+import NotFoundPage from './pages/NotFoundPage';
 
-const App = () => {
+function App() {
+  // Dynamic basename for deployment flexibility
+  const basename = process.env.NODE_ENV === 'production' ? '/portfolio' : '/';
+
   return (
     <AppProvider>
-      {/* Use dynamic basename for different environments */}
-      <Router basename={process.env.NODE_ENV === 'production' ? '/portfolio' : '/'}>
+      <Router basename={basename}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="projects" element={<ProjectsPage />} />
-            <Route path="experience" element={<ExperiencePage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
-          {/* Add a catch-all route for GitHub Pages 404 handling */}
-          <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </Router>
     </AppProvider>
   );
-};
+}
 
 export default App;
