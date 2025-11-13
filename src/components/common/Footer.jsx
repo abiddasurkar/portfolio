@@ -1,83 +1,101 @@
-import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ChevronUp, Code, Heart } from 'lucide-react';
-import { useAppContext } from '../../context/AppContext';
+import React from 'react';
+import { Mail, Linkedin, Github, Twitter } from 'lucide-react';
 
 const Footer = () => {
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [isVisible, setIsVisible] = useState(false);
-  const { user } = useAppContext();
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-
-    const toggleVisibility = () => {
-      setIsVisible(window.pageYOffset > 400);
-    };
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { 
-      icon: Github, 
-      url: user.github, 
+    {
+      icon: Github,
+      href: '#',
       label: 'GitHub',
-      color: 'hover:text-cyan-300'
+      hoverColor: 'dark:hover:text-white hover:text-gray-900'
     },
-    { 
-      icon: Linkedin, 
-      url: user.linkedin, 
+    {
+      icon: Linkedin,
+      href: '#',
       label: 'LinkedIn',
-      color: 'hover:text-blue-300'
+      hoverColor: 'dark:hover:text-blue-400 hover:text-blue-600'
     },
-    { 
-      icon: Mail, 
-      url: `mailto:${user.email}`, 
+    {
+      icon: Twitter,
+      href: '#',
+      label: 'Twitter',
+      hoverColor: 'dark:hover:text-blue-300 hover:text-blue-500'
+    },
+    {
+      icon: Mail,
+      href: 'mailto:contact@example.com',
       label: 'Email',
-      color: 'hover:text-purple-300'
-    }
+      hoverColor: 'dark:hover:text-cyan-300 hover:text-cyan-600'
+    },
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer className="relative bg-gray-900 border-t border-white/10">
-      {/* Simple gradient top border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500" />
+    <footer className={`relative transition-colors duration-300 ${'dark:bg-gray-900/50 bg-white/50 dark:backdrop-blur-xl backdrop-blur-lg dark:border-t dark:border-white/10 border-t border-gray-200/50'
+      }`}>
+      {/* Gradient Divider */}
+      <div className="h-px bg-gradient-to-r dark:from-transparent dark:via-cyan-500/20 dark:to-transparent from-gray-200 via-cyan-400 to-gray-200"></div>
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Simple centered layout */}
-        <div className="flex flex-col items-center gap-6">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex flex-col items-center justify-center space-y-6">
           {/* Social Links */}
-          <div className="flex gap-4">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className={`p-3 rounded-xl bg-gray-800/50 border border-white/10 text-gray-400 transition-all duration-300 hover:border-cyan-400/30 hover:bg-gray-700/50 ${social.color}`}
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              );
-            })}
+          <div className="flex items-center gap-6">
+            {socialLinks.map(({ icon: Icon, href, label, hoverColor }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className={`transition-all duration-300 ${hoverColor
+                  } dark:text-gray-400 text-gray-600 group relative`}
+              >
+                {/* Hover Background Circle */}
+                <div className="absolute inset-0 dark:bg-gradient-to-r dark:from-cyan-500/10 dark:to-purple-500/10 bg-gradient-to-r from-cyan-100 to-purple-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-125"></div>
+
+                {/* Icon */}
+                <Icon className="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
+              </a>
+            ))}
           </div>
 
-          {/* Copyright - Minimal */}
-          <div className="text-center">
-            <p className="text-gray-400 text-sm flex items-center gap-2 flex-wrap justify-center">
-              <span>© {currentYear} {user.name || 'Abid Dasurkar'}</span>
-              <span className="text-gray-600">•</span>
-              <span className="flex items-center gap-1">
-                Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> 
-                <Code className="w-4 h-4 text-cyan-400" />
-              </span>
+          {/* Divider Line */}
+          <div className="w-16 h-px dark:bg-gradient-to-r dark:from-cyan-500/30 dark:to-purple-500/30 bg-gradient-to-r from-cyan-300 to-purple-300"></div>
+
+          {/* Copyright and Links */}
+          <div className="text-center space-y-4">
+            <p className="dark:text-gray-400 text-gray-600 text-sm">
+              © {currentYear} <span className="bg-gradient-to-r from-cyan-300 to-purple-400 dark:to-purple-300 bg-clip-text text-transparent font-semibold">Abid Dasurkar</span>. All rights reserved.
+            </p>
+
+            {/* Footer Links */}
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <a
+                href="#privacy"
+                className="dark:text-gray-400 text-gray-600 hover:dark:text-cyan-300 hover:text-cyan-600 transition-colors duration-300 text-xs font-medium"
+              >
+                Privacy
+              </a>
+              <span className="dark:text-gray-600 text-gray-300">•</span>
+              <a
+                href="#terms"
+                className="dark:text-gray-400 text-gray-600 hover:dark:text-cyan-300 hover:text-cyan-600 transition-colors duration-300 text-xs font-medium"
+              >
+                Terms
+              </a>
+              <span className="dark:text-gray-600 text-gray-300">•</span>
+              <a
+                href="#sitemap"
+                className="dark:text-gray-400 text-gray-600 hover:dark:text-cyan-300 hover:text-cyan-600 transition-colors duration-300 text-xs font-medium"
+              >
+                Sitemap
+              </a>
+            </div>
+          </div>
+
+          {/* Scroll Indicator - Optional */}
+          <div className="pt-4 text-center">
+            <p className="dark:text-gray-500 text-gray-400 text-xs font-light tracking-wide">
+              Built with React & Tailwind CSS
             </p>
           </div>
         </div>

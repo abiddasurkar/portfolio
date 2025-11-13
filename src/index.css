@@ -7,7 +7,21 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 🎨 Text selection styling */
+/* 🎨 Light Mode (Default) */
+body {
+  @apply bg-white text-text-light;
+}
+
+/* 🌙 Dark Mode */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  @apply bg-slate-900 text-text-dark;
+}
+
+/* 🎨 Text selection styling - Light Mode */
 ::selection {
   background-color: rgba(34, 211, 238, 0.2); /* cyan-400 with opacity */
   color: white;
@@ -18,13 +32,24 @@ html {
   color: white;
 }
 
-/* 🖱️ Custom Scrollbar */
+/* 🌙 Text selection styling - Dark Mode */
+html.dark ::selection {
+  background-color: rgba(34, 211, 238, 0.3);
+  color: #0f172a;
+}
+
+html.dark ::-moz-selection {
+  background-color: rgba(34, 211, 238, 0.3);
+  color: #0f172a;
+}
+
+/* 🖱️ Custom Scrollbar - Light Mode */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(17, 24, 39, 0.5); /* gray-900 */
+  background: rgba(229, 231, 235, 0.5); /* gray-200 */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -34,4 +59,28 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #0891b2, #7c3aed); /* darker cyan → purple */
+}
+
+/* 🖱️ Custom Scrollbar - Dark Mode */
+html.dark ::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.5); /* gray-900 */
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #06b6d4, #8b5cf6); /* cyan → purple */
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0891b2, #7c3aed); /* darker cyan → purple */
+}
+
+/* ✨ Global Smooth Transitions for Theme Changes */
+* {
+  @apply transition-colors duration-300;
+}
+
+/* 🔧 Prevent transition on scroll or performance-critical elements */
+.no-transition {
+  @apply !transition-none;
 }

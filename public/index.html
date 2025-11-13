@@ -4,8 +4,12 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#2563eb" />
-    
+
+    <!-- Dynamic Theme Colors -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
     <!-- SEO Meta Tags -->
     <meta
       name="description"
@@ -16,36 +20,50 @@
       content="Abid Dasurkar, Frontend Developer, React Developer, Next.js, JavaScript, TypeScript, Web Development, Portfolio, React, Node.js, Azure"
     />
     <meta name="author" content="Abid Dasurkar" />
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Abid Dasurkar - Frontend & Next.js Developer" />
     <meta property="og:description" content="Experienced Frontend Developer with 3+ years expertise in React, Next.js, and modern web technologies. Specialized in scalable applications and cloud deployment." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://abiddasurkar.github.io/portfolio/" />
     <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Abid Dasurkar - Frontend & Next.js Developer" />
     <meta name="twitter:description" content="Experienced Frontend Developer with 3+ years expertise in React, Next.js, and modern web technologies." />
     <meta name="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
     <meta name="twitter:creator" content="@abiddasurkar" />
-    
+
+    <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    
-    <!-- Preload critical resources -->
+
+    <!-- Preload Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Web App Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://abiddasurkar.github.io/portfolio/" />
-    
+
     <!-- Title -->
     <title>Abid Dasurkar - Frontend & Next.js Developer | React Specialist</title>
-    
+
+    <!-- Smooth Background Transition -->
+    <style>
+      html, body {
+        background-color: #0f172a;
+        transition: background-color 0.3s ease;
+      }
+      @media (prefers-color-scheme: light) {
+        html, body {
+          background-color: #ffffff;
+        }
+      }
+    </style>
+
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
@@ -86,9 +104,9 @@
       </div>
     </noscript>
     <div id="root"></div>
+
+    <!-- Optional Analytics -->
     
-    <!-- Analytics Script (Optional - Add when you have Google Analytics) -->
-    <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -96,6 +114,6 @@
       gtag('js', new Date());
       gtag('config', 'GA_MEASUREMENT_ID');
     </script>
-    -->
+   
   </body>
 </html>
