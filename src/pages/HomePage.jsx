@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   MapPin, Mail, Phone, TrendingUp, Target, Layers,
@@ -14,6 +14,10 @@ const HomePage = () => {
   const { isDark } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentX, setCurrentX] = useState(0);
+  const carouselRef = useRef(null);
 
   // Auto-play carousel
   useEffect(() => {
@@ -37,6 +41,42 @@ const HomePage = () => {
   const goToSlide = (index) => {
     setIsAutoPlay(false);
     setCurrentIndex(index);
+  };
+
+  // Mouse/Touch drag handlers
+  const handleDragStart = (e) => {
+    setIsDragging(true);
+    setIsAutoPlay(false);
+    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    setStartX(clientX);
+    setCurrentX(clientX);
+  };
+
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    setCurrentX(clientX);
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    
+    const diff = startX - currentX;
+    const threshold = 50; // Minimum swipe distance
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        // Swiped left - go to next
+        goToNext();
+      } else {
+        // Swiped right - go to previous
+        goToPrevious();
+      }
+    }
+    
+    setStartX(0);
+    setCurrentX(0);
   };
 
   // Get prev, current, next project indices
@@ -154,9 +194,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* STATS SECTION REMOVED */}
-
-      {/* FEATURED PROJECTS CAROUSEL - 3 VISIBLE */}
+      {/* FEATURED PROJECTS CAROUSEL - 3 VISIBLE WITH SWIPE */}
       <section className="py-16 md:py-20 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
@@ -168,11 +206,22 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* 3-Project Carousel Container */}
-          <div className="relative">
+          {/* 3-Project Carousel Container with Drag/Swipe */}
+          <div 
+            ref={carouselRef}
+            className="relative select-none"
+            onMouseDown={handleDragStart}
+            onMouseMove={handleDragMove}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={handleDragEnd}
+            onTouchStart={handleDragStart}
+            onTouchMove={handleDragMove}
+            onTouchEnd={handleDragEnd}
+            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+          >
             <div className="flex items-center justify-center gap-4 lg:gap-6">
               {/* LEFT PROJECT (30% size) */}
-              <div className="hidden lg:block flex-shrink-0 w-1/5 transform scale-75 opacity-60 hover:opacity-80 transition-all duration-300">
+              <div className="hidden lg:block flex-shrink-0 w-1/5 transform scale-75 opacity-60 hover:opacity-80 transition-all duration-300 pointer-events-none">
                 <ProjectCardCompact project={projects[prevIndex]} isDark={isDark} />
               </div>
 
@@ -186,10 +235,21 @@ const HomePage = () => {
               </div>
 
               {/* RIGHT PROJECT (30% size) */}
-              <div className="hidden lg:block flex-shrink-0 w-1/5 transform scale-75 opacity-60 hover:opacity-80 transition-all duration-300">
+              <div className="hidden lg:block flex-shrink-0 w-1/5 transform scale-75 opacity-60 hover:opacity-80 transition-all duration-300 pointer-events-none">
                 <ProjectCardCompact project={projects[nextIndex]} isDark={isDark} />
               </div>
             </div>
+
+            {/* Drag indicator */}
+            {isDragging && (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <div className={`px-4 py-2 rounded-full ${isDark ? 'bg-gray-800/90' : 'bg-white/90'} shadow-lg`}>
+                  <p className={`text-sm font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {startX - currentX > 0 ? '← Swipe' : 'Swipe →'}
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Navigation Buttons */}
             <button
