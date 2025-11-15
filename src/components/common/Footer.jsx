@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Linkedin, Github, Twitter } from 'lucide-react';
+import { Mail, Linkedin, Github } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,19 +7,33 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: '#',
+      href: 'https://github.com/abiddasurkar/',
       label: 'GitHub',
       hoverColor: 'dark:hover:text-white hover:text-gray-900'
     },
     {
       icon: Linkedin,
-      href: '#',
+      href: 'https://www.linkedin.com/in/abiddasurkar/',
       label: 'LinkedIn',
       hoverColor: 'dark:hover:text-blue-400 hover:text-blue-600'
     },
     {
+      icon: 'img',
+      src: 'https://wuzzuf.net/favicon.ico',
+      href: 'https://wuzzuf.net/me/Dasurkar-Abid-6e7f4971be',
+      label: 'Wuzzuf',
+      hoverColor: 'dark:hover:text-green-400 hover:text-green-600'
+    },
+    {
+      icon: 'img',
+      src: 'https://himalayas.app/favicon.ico',
+      href: 'https://himalayas.app/@abiddasurkar',
+      label: 'Himalayas',
+      hoverColor: 'dark:hover:text-purple-400 hover:text-purple-600'
+    },
+    {
       icon: Mail,
-      href: 'abiddasurkar@gmail.com',
+      href: 'mailto:abiddasurkar@gmail.com',
       label: 'Email',
       hoverColor: 'dark:hover:text-cyan-300 hover:text-cyan-600'
     },
@@ -35,19 +49,31 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-center space-y-6">
           {/* Social Links */}
           <div className="flex items-center gap-6">
-            {socialLinks.map(({ icon: Icon, href, label, hoverColor }) => (
+            {socialLinks.map(({ icon: Icon, src, href, label, hoverColor }) => (
               <a
                 key={label}
                 href={href}
                 aria-label={label}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`transition-all duration-300 ${hoverColor
                   } dark:text-gray-400 text-gray-600 group relative`}
               >
                 {/* Hover Background Circle */}
                 <div className="absolute inset-0 dark:bg-gradient-to-r dark:from-cyan-500/10 dark:to-purple-500/10 bg-gradient-to-r from-cyan-100 to-purple-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-125"></div>
 
-                {/* Icon */}
-                <Icon className="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
+                {/* Icon - Render either Lucide icon or image */}
+                <div className="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 flex items-center justify-center">
+                  {Icon === 'img' ? (
+                    <img 
+                      src={src} 
+                      alt={label}
+                      className="w-5 h-5 object-contain filter dark:invert-0 invert" 
+                    />
+                  ) : (
+                    <Icon className="w-6 h-6" />
+                  )}
+                </div>
               </a>
             ))}
           </div>
