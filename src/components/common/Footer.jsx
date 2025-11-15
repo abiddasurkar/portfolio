@@ -12,8 +12,9 @@ const Footer = () => {
       hoverColor: 'dark:hover:text-white hover:text-gray-900'
     },
     {
-      icon: Linkedin,
+      icon: 'img',
       href: 'https://www.linkedin.com/in/abiddasurkar/',
+      src:'https://static.licdn.com/aero-v1/sc/h/al2o9zrvru7aqj8e1x2rzsrca',
       label: 'LinkedIn',
       hoverColor: 'dark:hover:text-blue-400 hover:text-blue-600'
     },
