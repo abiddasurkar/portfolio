@@ -27,7 +27,7 @@ const ProjectsPage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
   const [isCarouselAutoPlay, setIsCarouselAutoPlay] = useState(true);
-  
+
   // Modal state
   const [selectedProject, setSelectedProject] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -368,9 +368,8 @@ const ProjectsPage = () => {
                       return (
                         <div
                           key={project.id}
-                          className={`absolute inset-0 transition-opacity duration-700 ease-in-out cursor-pointer ${
-                            index === currentCarouselIndex ? 'opacity-100' : 'opacity-0'
-                          }`}
+                          className={`absolute inset-0 transition-opacity duration-700 ease-in-out cursor-pointer ${index === currentCarouselIndex ? 'opacity-100' : 'opacity-0'
+                            }`}
                           onClick={() => openDetails(project)}
                         >
                           {/* Gradient background */}
@@ -384,11 +383,10 @@ const ProjectsPage = () => {
                             {/* Header */}
                             <div>
                               <div className="inline-block mb-4">
-                                <span className={`px-4 py-2 rounded-full text-sm font-semibold border ${
-                                  project.status === 'Completed'
+                                <span className={`px-4 py-2 rounded-full text-sm font-semibold border ${project.status === 'Completed'
                                     ? 'bg-green-500/10 border-green-500/30 text-green-400'
                                     : 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400'
-                                }`}>
+                                  }`}>
                                   {project.status}
                                 </span>
                               </div>
@@ -434,9 +432,8 @@ const ProjectsPage = () => {
                 {/* Navigation Buttons */}
                 <button
                   onClick={goToPreviousCarousel}
-                  className={`absolute -left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                    isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
-                  }`}
+                  className={`absolute -left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 hover:scale-110 ${isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
+                    }`}
                   aria-label="Previous slide"
                 >
                   <ArrowLeft className="w-6 h-6" />
@@ -444,9 +441,8 @@ const ProjectsPage = () => {
 
                 <button
                   onClick={goToNextCarousel}
-                  className={`absolute -right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                    isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
-                  }`}
+                  className={`absolute -right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 hover:scale-110 ${isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
+                    }`}
                   aria-label="Next slide"
                 >
                   <ArrowRight className="w-6 h-6" />
@@ -458,11 +454,10 @@ const ProjectsPage = () => {
                     <button
                       key={index}
                       onClick={() => goToCarouselSlide(index)}
-                      className={`transition-all duration-300 rounded-full ${
-                        index === currentCarouselIndex
+                      className={`transition-all duration-300 rounded-full ${index === currentCarouselIndex
                           ? 'w-10 h-2 bg-gradient-to-r from-cyan-500 to-purple-500'
                           : `w-2 h-2 ${isDark ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-400 hover:bg-gray-500'}`
-                      }`}
+                        }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
                   ))}

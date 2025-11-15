@@ -38,9 +38,8 @@ const ProjectCard = ({ project, viewMode = 'grid', onOpenDetails }) => {
 
   if (!project) return null;
 
-  const cardBase = `rounded-2xl border backdrop-blur-xl transition-shadow duration-300 ${
-    isDark ? 'bg-gray-900/60 border-white/10' : 'bg-white/60 border-gray-200/50'
-  }`;
+  const cardBase = `rounded-2xl border backdrop-blur-xl transition-shadow duration-300 ${isDark ? 'bg-gray-900/60 border-white/10' : 'bg-white/60 border-gray-200/50'
+    }`;
 
   // Render common content
   const Content = () => (
@@ -112,9 +111,8 @@ const ProjectCard = ({ project, viewMode = 'grid', onOpenDetails }) => {
         {project.tech?.split(', ').slice(0, 6).map((t, i) => (
           <span
             key={i}
-            className={`text-xs px-2.5 py-1 rounded-md font-medium border ${
-              isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300' : 'bg-cyan-100/50 border-cyan-300 text-cyan-700'
-            }`}
+            className={`text-xs px-2.5 py-1 rounded-md font-medium border ${isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300' : 'bg-cyan-100/50 border-cyan-300 text-cyan-700'
+              }`}
           >
             {t}
           </span>
@@ -149,19 +147,18 @@ const ProjectCard = ({ project, viewMode = 'grid', onOpenDetails }) => {
 
         {project.status && (
           <span
-            className={`px-2.5 py-1 rounded-full text-xs font-medium border ${
-              project.status === 'Completed'
+            className={`px-2.5 py-1 rounded-full text-xs font-medium border ${project.status === 'Completed'
                 ? isDark
                   ? 'bg-green-500/10 text-green-400 border-green-500/20'
                   : 'bg-green-100/50 text-green-700 border-green-300/50'
                 : project.status === 'In Progress'
-                ? isDark
-                  ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
-                  : 'bg-yellow-100/50 text-yellow-700 border-yellow-300/50'
-                : isDark
-                ? 'bg-blue-500/10 text-blue-400 border-blue-500/20'
-                : 'bg-blue-100/50 text-blue-700 border-blue-300/50'
-            }`}
+                  ? isDark
+                    ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
+                    : 'bg-yellow-100/50 text-yellow-700 border-yellow-300/50'
+                  : isDark
+                    ? 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                    : 'bg-blue-100/50 text-blue-700 border-blue-300/50'
+              }`}
           >
             {project.status}
           </span>
@@ -256,9 +253,8 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
             {/* Modal Content */}
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className={`rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border backdrop-blur-xl my-8 ${
-                isDark ? 'bg-gray-900/95 border-white/10' : 'bg-white/95 border-gray-200'
-              }`}
+              className={`rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border backdrop-blur-xl my-8 ${isDark ? 'bg-gray-900/95 border-white/10' : 'bg-white/95 border-gray-200'
+                }`}
               initial={{ scale: 0.9, y: 20, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: 10, opacity: 0 }}
@@ -279,9 +275,8 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
                 </div>
                 <button
                   onClick={onClose}
-                  className={`p-2 rounded-md transition flex-shrink-0 ${
-                    isDark ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+                  className={`p-2 rounded-md transition flex-shrink-0 ${isDark ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-100'
+                    }`}
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -309,11 +304,10 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
                     {project.tech?.split(', ').map((t, i) => (
                       <span
                         key={i}
-                        className={`text-sm px-3 py-1.5 rounded-md border ${
-                          isDark
+                        className={`text-sm px-3 py-1.5 rounded-md border ${isDark
                             ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300'
                             : 'bg-cyan-100/50 border-cyan-300 text-cyan-700'
-                        }`}
+                          }`}
                       >
                         {t}
                       </span>
@@ -343,9 +337,8 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
 
                 {/* Meta Info */}
                 <div
-                  className={`grid grid-cols-2 gap-4 p-4 rounded-md ${
-                    isDark ? 'bg-gray-800/50' : 'bg-gray-100/50'
-                  }`}
+                  className={`grid grid-cols-2 gap-4 p-4 rounded-md ${isDark ? 'bg-gray-800/50' : 'bg-gray-100/50'
+                    }`}
                 >
                   <div>
                     <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Status</p>
@@ -369,11 +362,10 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium border transition-colors ${
-                      isDark
+                    className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium border transition-colors ${isDark
                         ? 'bg-gray-800/50 border-white/10 text-gray-300 hover:bg-gray-700/50'
                         : 'bg-gray-200/50 border-gray-300 text-gray-700 hover:bg-gray-300/50'
-                    }`}
+                      }`}
                   >
                     <Github className="w-5 h-5" />
                     View Code
@@ -457,9 +449,8 @@ const WebsitePreviewModal = ({ project, isDark, open, onClose }) => {
             {/* Modal Content */}
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className={`rounded-2xl shadow-2xl w-full max-w-5xl h-[90vh] overflow-hidden border backdrop-blur-xl flex flex-col ${
-                isDark ? 'bg-gray-900/95 border-white/10' : 'bg-white/95 border-gray-200'
-              }`}
+              className={`rounded-2xl shadow-2xl w-full max-w-5xl h-[90vh] overflow-hidden border backdrop-blur-xl flex flex-col ${isDark ? 'bg-gray-900/95 border-white/10' : 'bg-white/95 border-gray-200'
+                }`}
               initial={{ scale: 0.95, y: 10, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.98, y: 10, opacity: 0 }}
@@ -487,9 +478,8 @@ const WebsitePreviewModal = ({ project, isDark, open, onClose }) => {
                   </a>
                   <button
                     onClick={onClose}
-                    className={`p-2 rounded-md transition ${
-                      isDark ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-100'
-                    }`}
+                    className={`p-2 rounded-md transition ${isDark ? 'text-gray-300 hover:bg-white/5' : 'text-gray-600 hover:bg-gray-100'
+                      }`}
                     aria-label="Close preview"
                   >
                     <X className="w-5 h-5" />

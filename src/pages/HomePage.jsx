@@ -66,11 +66,10 @@ const HomePage = () => {
 
   return (
     <div
-      className={`min-h-screen relative overflow-hidden transition-colors duration-700 ${
-        isDark
+      className={`min-h-screen relative overflow-hidden transition-colors duration-700 ${isDark
           ? 'bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800'
           : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
-      }`}
+        }`}
     >
       {/* Background gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -84,11 +83,10 @@ const HomePage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
             <div
-              className={`inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border transition-all duration-300 backdrop-blur-sm ${
-                isDark
+              className={`inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border transition-all duration-300 backdrop-blur-sm ${isDark
                   ? 'bg-gray-800/50 border-white/10 text-gray-300'
                   : 'bg-white/70 border-gray-300 text-gray-700'
-              }`}
+                }`}
             >
               <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full animate-pulse" />
               <span className="text-sm">Available for new projects</span>
@@ -97,11 +95,11 @@ const HomePage = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               {user.name}
             </h1>
-            
+
             <p className={`text-lg sm:text-xl md:text-2xl font-semibold mb-3 ${isDark ? 'text-cyan-100' : 'text-cyan-700'}`}>
               {user.title}
             </p>
-            
+
             <p className={`text-sm sm:text-base md:text-lg mb-6 max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
               {user.bio}
             </p>
@@ -115,11 +113,10 @@ const HomePage = () => {
 
               <a
                 href={`mailto:${user.email}`}
-                className={`flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 border transition-all duration-300 ${
-                  isDark
+                className={`flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 border transition-all duration-300 ${isDark
                     ? 'bg-gray-800/50 border-white/10 hover:border-cyan-400/30 text-gray-300 hover:text-white'
                     : 'bg-white border-gray-300 hover:border-cyan-400/50 text-gray-700 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400 flex-shrink-0" />
                 <span className="truncate hidden sm:inline">{user.email}</span>
@@ -145,11 +142,10 @@ const HomePage = () => {
 
               <button
                 onClick={() => navigate('/contact')}
-                className={`px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold border transition-all duration-300 ${
-                  isDark
+                className={`px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold border transition-all duration-300 ${isDark
                     ? 'bg-gray-800/50 border-white/20 text-gray-300 hover:bg-gray-700/50 hover:border-cyan-400/30 hover:text-white'
                     : 'bg-white border-gray-300 text-gray-700 hover:bg-cyan-50 hover:border-cyan-400 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Get In Touch
               </button>
@@ -182,8 +178,8 @@ const HomePage = () => {
 
               {/* CENTER PROJECT (Large - 100% interaction) */}
               <div className="flex-shrink-0 w-full lg:w-3/5">
-                <ProjectCardLarge 
-                  project={projects[currentIndex]} 
+                <ProjectCardLarge
+                  project={projects[currentIndex]}
                   isDark={isDark}
                   onNavigate={(path) => navigate(path)}
                 />
@@ -198,9 +194,8 @@ const HomePage = () => {
             {/* Navigation Buttons */}
             <button
               onClick={goToPrevious}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 lg:-translate-x-20 z-20 p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
-              }`}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 lg:-translate-x-20 z-20 p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 ${isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
+                }`}
               aria-label="Previous slide"
             >
               <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -208,9 +203,8 @@ const HomePage = () => {
 
             <button
               onClick={goToNext}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 lg:translate-x-20 z-20 p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
-              }`}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 lg:translate-x-20 z-20 p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 ${isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
+                }`}
               aria-label="Next slide"
             >
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -223,11 +217,10 @@ const HomePage = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentIndex
+                className={`transition-all duration-300 rounded-full ${index === currentIndex
                     ? 'w-8 h-2 bg-gradient-to-r from-cyan-500 to-purple-500'
                     : `w-2 h-2 ${isDark ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-400 hover:bg-gray-500'}`
-                }`}
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -265,20 +258,18 @@ const ProjectCardLarge = ({ project, isDark, onNavigate }) => {
   const color = colors[Math.random() * colors.length | 0];
 
   return (
-    <div className={`relative h-80 sm:h-96 rounded-3xl overflow-hidden border border-white/10 backdrop-blur-xl group cursor-pointer transition-all duration-500 hover:shadow-2xl ${
-      isDark ? 'bg-gray-900/60' : 'bg-white/60'
-    }`}>
+    <div className={`relative h-80 sm:h-96 rounded-3xl overflow-hidden border border-white/10 backdrop-blur-xl group cursor-pointer transition-all duration-500 hover:shadow-2xl ${isDark ? 'bg-gray-900/60' : 'bg-white/60'
+      }`}>
       <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-20`} />
       <div className={`absolute top-0 left-0 w-1 h-32 bg-gradient-to-b ${color} rounded-r-full`} />
 
       <div className="relative h-full flex flex-col justify-between p-6 sm:p-8">
         <div>
           <div className="inline-block mb-3">
-            <span className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border ${
-              project.status === 'Completed'
+            <span className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border ${project.status === 'Completed'
                 ? 'bg-green-500/10 border-green-500/30 text-green-400'
                 : 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400'
-            }`}>
+              }`}>
               {project.status}
             </span>
           </div>
@@ -302,9 +293,8 @@ const ProjectCardLarge = ({ project, isDark, onNavigate }) => {
 
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {project.tech?.split(', ').slice(0, 3).map((tech, idx) => (
-              <span key={idx} className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs border ${
-                isDark ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300' : 'bg-cyan-100/50 border-cyan-300 text-cyan-700'
-              }`}>
+              <span key={idx} className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs border ${isDark ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300' : 'bg-cyan-100/50 border-cyan-300 text-cyan-700'
+                }`}>
                 {tech}
               </span>
             ))}
@@ -336,9 +326,8 @@ const ProjectCardCompact = ({ project, isDark }) => {
   const color = colors[Math.random() * colors.length | 0];
 
   return (
-    <div className={`relative h-64 sm:h-72 rounded-2xl overflow-hidden border border-white/10 backdrop-blur-xl ${
-      isDark ? 'bg-gray-900/60' : 'bg-white/60'
-    }`}>
+    <div className={`relative h-64 sm:h-72 rounded-2xl overflow-hidden border border-white/10 backdrop-blur-xl ${isDark ? 'bg-gray-900/60' : 'bg-white/60'
+      }`}>
       <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-20`} />
       <div className="relative h-full flex flex-col justify-between p-4 sm:p-5">
         <div>
@@ -349,11 +338,10 @@ const ProjectCardCompact = ({ project, isDark }) => {
             {project.category}
           </p>
         </div>
-        <div className={`inline-block px-2 py-1 rounded-full text-xs font-semibold border ${
-          project.status === 'Completed'
+        <div className={`inline-block px-2 py-1 rounded-full text-xs font-semibold border ${project.status === 'Completed'
             ? 'bg-green-500/10 border-green-500/30 text-green-400'
             : 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400'
-        }`}>
+          }`}>
           {project.status}
         </div>
       </div>
