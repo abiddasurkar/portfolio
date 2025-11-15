@@ -44,27 +44,6 @@ export const experience = [
     companyUrl: 'https://www.synechron.com',
     highlight: true
   },
-  {
-    id: 2,
-    title: 'Full Stack Developer Apprentice',
-    company: 'QSpiders Training Center',
-    location: 'Pune, India',
-    duration: 'Nov 2022 – Dec 2023',
-    employmentType: 'Apprenticeship',
-    roles: ['Full Stack Developer Trainee', 'React & Java Developer'],
-    achievements: [
-      'Built full-stack applications with React, Node.js, and MongoDB',
-      'Implemented authentication using JWT and role-based permissions',
-      'Gained proficiency in React, Redux, Java, Spring Boot, and REST APIs',
-      'Completed capstone project using Agile methodology',
-      'Collaborated with peers in team-based coding sprints'
-    ],
-    technologies: [
-      'React', 'Redux', 'Java', 'Spring Boot', 'MongoDB', 'Node.js', 'REST APIs', 'Git'
-    ],
-    icon: Briefcase,
-    highlight: false
-  }
 ];
 
 export const education = [
