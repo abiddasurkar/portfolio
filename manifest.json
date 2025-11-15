@@ -18,9 +18,12 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/portfolio/",
+  "scope": "/portfolio/",
   "display": "standalone",
-  "theme_color": "#2563eb",
-  "background_color": "#ffffff",
-  "description": "Portfolio of Abid Dasurkar - Frontend & Next.js Developer with 3+ years experience"
+  "theme_color": "#0ea5e9",
+  "background_color": "#0f172a",
+  "description": "Portfolio of Abid Dasurkar - Frontend & Next.js Developer with 3+ years experience",
+  "orientation": "portrait-primary",
+  "categories": ["portfolio", "business"]
 }
