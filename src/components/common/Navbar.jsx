@@ -246,16 +246,16 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-700 ease-out ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-4'
+          className={`lg:hidden transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <div
-            className={`flex flex-col border-t mt-4 rounded-3xl shadow-2xl mx-4 overflow-hidden backdrop-blur-2xl ${
+            className={`flex flex-col border-t mt-4 rounded-3xl shadow-2xl mx-4 overflow-hidden backdrop-blur-2xl transition-transform duration-300 ${
               isDark
                 ? 'bg-gray-900/98 border-white/10'
                 : 'bg-white/95 border-gray-200/50'
-            }`}
+            } ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-4'}`}
           >
             {navLinks.map(({ path, label, icon: Icon }, index) => {
               const isActive = location.pathname === path;
@@ -263,7 +263,7 @@ const Navbar = () => {
                 <Link
                   key={path}
                   to={path}
-                  className={`relative flex items-center gap-4 px-4 sm:px-6 py-4 sm:py-5 text-base transition-all duration-500 group overflow-hidden ${
+                  className={`relative flex items-center gap-4 px-4 sm:px-6 py-4 sm:py-5 text-base transition-all duration-200 group overflow-hidden ${
                     isActive
                       ? isDark
                         ? 'text-white'
@@ -273,8 +273,9 @@ const Navbar = () => {
                       : 'text-gray-700 hover:text-gray-900'
                   }`}
                   style={{
-                    transitionDelay: `${isMobileMenuOpen ? index * 80 : 0}ms`,
-                    transform: `translateX(${isMobileMenuOpen ? 0 : -20}px)`,
+                    transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms',
+                    opacity: isMobileMenuOpen ? 1 : 0,
+                    transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
                   }}
                 >
                   {/* Animated Background */}

@@ -107,7 +107,7 @@ const Layout = () => {
       {/* Navbar */}
       <Navbar />
 
-    {/* Page Transition Overlay - Z-30 (below modals at Z-9998 and Z-9999) */}
+      {/* Page Transition Overlay - Z-30 (below modals at Z-9998 and Z-9999) */}
       <div
         aria-hidden
         className={`pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 ${
@@ -151,7 +151,7 @@ const Layout = () => {
       <RouteChangeAnnouncer pathname={location.pathname} />
 
       {/* Inline CSS for custom keyframes and utility animations */}
-      <style jsx>{`
+      <style>{`
         /* Floating orbs */
         @keyframes float-slow {
           0% {
@@ -234,7 +234,7 @@ const Layout = () => {
         }
 
         /* Focus outline reset for aesthetics (keep a11y focus-visible in your global styles) */
-        :global(.no-focus-outline) {
+        .no-focus-outline {
           outline: none;
         }
       `}</style>
