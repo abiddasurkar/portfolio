@@ -12,8 +12,10 @@ import {
   DollarSign,
   Database,
   Monitor,
-  MessageCircle
+  MessageCircle,
+  User
 } from 'lucide-react';
+
 
 export const experience = [
   {
@@ -242,9 +244,10 @@ export const skills = [
   }
 ];
 
+
 export const projects = [
   {
-    id: 'enterprise-dashboard',
+    id: 'banking-dashboard',
     title: 'Enterprise Banking Dashboard',
     description: 'Modernized banking systems with React, Next.js, and Azure deployments for improved scalability and security.',
     icon: DollarSign,
@@ -257,8 +260,8 @@ export const projects = [
     category: 'Web Application',
     date: '2023-11-15',
     status: 'Completed',
-    githubUrl: 'https://github.com/abiddasurkar/enterprise-dashboard',
-    liveUrl: null
+    githubUrl: 'https://github.com/abiddasurkar/banking-dashboard',
+    liveUrl: 'https://abiddasurkar.github.io/banking-dashboard/'
   },
   {
     id: 'document-processing-system',
@@ -275,8 +278,8 @@ export const projects = [
     category: 'AI/ML Application',
     date: '2023-08-20',
     status: 'Completed',
-    githubUrl: 'https://github.com/abiddasurkar/document-processor',
-    liveUrl: null
+    githubUrl: 'https://github.com/abiddasurkar/document-processing-system',
+    liveUrl: 'https://abiddasurkar.github.io/document-processing-system'
   },
   {
     id: 'ecommerce-platform',
@@ -294,6 +297,24 @@ export const projects = [
     date: '2024-01-10',
     status: 'In Progress',
     githubUrl: 'https://github.com/abiddasurkar/ecommerce-platform',
-    liveUrl: null
+    liveUrl: 'https://abiddasurkar.github.io/ecommerce-platform'
+  },
+  {
+    id: 'portfolio',
+    title: 'Personal Portfolio',
+    description: 'Modern responsive portfolio website showcasing projects and skills with smooth animations.',
+    icon: User,
+    tech: 'React, Next.js, Tailwind CSS, Framer Motion',
+    highlights: [
+      'Responsive design',
+      'Smooth animations',
+      'Project showcase',
+      'Contact integration'
+    ],
+    category: 'Portfolio Website',
+    date: '2024-02-01',
+    status: 'Completed',
+    githubUrl: 'https://github.com/abiddasurkar/portfolio',
+    liveUrl: 'https://abiddasurkar.github.io/portfolio'
   }
 ];

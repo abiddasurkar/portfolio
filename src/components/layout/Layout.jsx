@@ -47,13 +47,14 @@ const Layout = () => {
 
   return (
     <div
-      className={`font-sans min-h-screen flex flex-col relative overflow-hidden transition-colors duration-700 ${isDark
+      className={`font-sans min-h-screen flex flex-col relative overflow-hidden transition-colors duration-700 ${
+        isDark
           ? 'bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-gray-100'
           : 'bg-gradient-to-br from-white via-gray-50 to-gray-100 text-gray-900'
-        }`}
+      }`}
     >
-      {/* Background orbs + particles */}
-      <div className="fixed -z-10 top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+      {/* Background orbs + particles - LOWEST Z-INDEX */}
+      <div className="fixed -z-50 top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         {isDark ? (
           <>
             <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-float-slow" />
@@ -103,26 +104,30 @@ const Layout = () => {
         )}
       </div>
 
+      {/* Navbar */}
       <Navbar />
 
-      {/* Page Transition Overlay (soft gradient fade) */}
+      {/* Page Transition Overlay - Z-30 (below modals at Z-40 and Z-50) */}
       <div
         aria-hidden
-        className={`pointer-events-none fixed inset-0 z-40 transition-opacity duration-300 ${isTransitioning ? 'opacity-90' : 'opacity-0'
-          }`}
+        className={`pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 ${
+          isTransitioning ? 'opacity-90' : 'opacity-0'
+        }`}
       >
         <div
-          className={`w-full h-full ${isDark
+          className={`w-full h-full ${
+            isDark
               ? 'bg-gradient-to-br from-black/75 via-cyan-800/30 to-purple-900/30'
               : 'bg-gradient-to-br from-white/80 via-cyan-50/30 to-purple-50/30'
-            }`}
+          }`}
         />
       </div>
 
       {/* Main content with accent border glow */}
       <main
-        className={`flex-grow transition-all duration-700 ${isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
+        className={`flex-grow transition-all duration-700 ${
+          isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}
       >
         <div
           className={`mx-auto transition-shadow transition-colors duration-500 h-full ${
@@ -130,12 +135,13 @@ const Layout = () => {
             isDark
               ? 'ring-1 ring-cyan-500/10 hover:ring-cyan-500/20'
               : 'ring-0 hover:ring-cyan-400/10'
-            }`}
+          }`}
         >
           <Outlet />
         </div>
       </main>
 
+      {/* Footer */}
       <Footer />
 
       {/* Enhanced Scroll-to-top (theme-aware) */}
@@ -148,40 +154,85 @@ const Layout = () => {
       <style jsx>{`
         /* Floating orbs */
         @keyframes float-slow {
-          0% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-10px) translateX(6px); }
-          100% { transform: translateY(0) translateX(0); }
+          0% {
+            transform: translateY(0) translateX(0);
+          }
+          50% {
+            transform: translateY(-10px) translateX(6px);
+          }
+          100% {
+            transform: translateY(0) translateX(0);
+          }
         }
         @keyframes float-slower {
-          0% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-14px) translateX(-8px); }
-          100% { transform: translateY(0) translateX(0); }
+          0% {
+            transform: translateY(0) translateX(0);
+          }
+          50% {
+            transform: translateY(-14px) translateX(-8px);
+          }
+          100% {
+            transform: translateY(0) translateX(0);
+          }
         }
         @keyframes pulse-slow {
-          0% { transform: scale(1); opacity: 0.95; }
-          50% { transform: scale(1.05); opacity: 0.85; }
-          100% { transform: scale(1); opacity: 0.95; }
+          0% {
+            transform: scale(1);
+            opacity: 0.95;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 0.85;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 0.95;
+          }
         }
-        .animate-float-slow { animation: float-slow 10s ease-in-out infinite; }
-        .animate-float-slower { animation: float-slower 14s ease-in-out infinite; }
-        .animate-pulse-slow { animation: pulse-slow 8s ease-in-out infinite; }
+        .animate-float-slow {
+          animation: float-slow 10s ease-in-out infinite;
+        }
+        .animate-float-slower {
+          animation: float-slower 14s ease-in-out infinite;
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 8s ease-in-out infinite;
+        }
 
         /* tiny random floating particles */
         @keyframes float-random {
-          0% { transform: translateY(0) translateX(0); opacity: 0.9; }
-          50% { transform: translateY(-30px) translateX(10px); opacity: 0.5; }
-          100% { transform: translateY(0) translateX(0); opacity: 0.9; }
+          0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.9;
+          }
+          50% {
+            transform: translateY(-30px) translateX(10px);
+            opacity: 0.5;
+          }
+          100% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.9;
+          }
         }
-        .animate-float-random { animation: float-random linear infinite; }
+        .animate-float-random {
+          animation: float-random linear infinite;
+        }
 
         /* soft overlay shimmer for cards / strips (used elsewhere) */
         @keyframes shimmer {
-          0% { transform: translateX(-100%); opacity: 0.6; }
-          100% { transform: translateX(100%); opacity: 0.6; }
+          0% {
+            transform: translateX(-100%);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateX(100%);
+            opacity: 0.6;
+          }
         }
-        .animate-shimmer { animation: shimmer 1.5s linear infinite; }
+        .animate-shimmer {
+          animation: shimmer 1.5s linear infinite;
+        }
 
-        /* Page slide/fade handled via utility classes on main */
         /* Focus outline reset for aesthetics (keep a11y focus-visible in your global styles) */
         :global(.no-focus-outline) {
           outline: none;
@@ -199,18 +250,15 @@ const RouteChangeAnnouncer = ({ pathname }) => {
   const [message, setMessage] = useState('');
   useEffect(() => {
     // Create a short announcement describing the route
-    const name = pathname === '/' ? 'Home' : pathname.replace('/', '').replace('-', ' ');
+    const name =
+      pathname === '/' ? 'Home' : pathname.replace('/', '').replace('-', ' ');
     setMessage(`Navigated to ${name}`);
     const t = setTimeout(() => setMessage(''), 1500);
     return () => clearTimeout(t);
   }, [pathname]);
 
   return (
-    <p
-      aria-live="polite"
-      className="sr-only"
-      role="status"
-    >
+    <p aria-live="polite" className="sr-only" role="status">
       {message}
     </p>
   );

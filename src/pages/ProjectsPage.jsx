@@ -7,10 +7,12 @@ import {
   X,
   ChevronDown,
   SearchX,
-  SlidersHorizontal
+  SlidersHorizontal,
+  ArrowLeft,
+  ArrowRight
 } from 'lucide-react';
 import { projects } from '../data/profileData';
-import ProjectCard from '../components/common/ProjectCard';
+import { ProjectCard, ProjectModal, WebsitePreviewModal } from '../components/common/ProjectCard';
 import { useAppContext } from '../context/AppContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -23,6 +25,13 @@ const ProjectsPage = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [sortOption, setSortOption] = useState('newest');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+  const [isCarouselAutoPlay, setIsCarouselAutoPlay] = useState(true);
+  
+  // Modal state
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const categories = useMemo(() => {
     const cats = projects.map((p) => p.category || 'Other');
@@ -57,6 +66,41 @@ const ProjectsPage = () => {
     return sorted;
   }, [searchQuery, selectedCategory, sortOption]);
 
+  // Modal functions
+  const openDetails = (project) => {
+    setSelectedProject(project);
+    setModalOpen(true);
+  };
+
+  const openPreview = () => {
+    setModalOpen(false);
+    setPreviewOpen(true);
+  };
+
+  // Carousel functions
+  React.useEffect(() => {
+    if (!isCarouselAutoPlay || filteredProjects.length === 0) return;
+    const interval = setInterval(() => {
+      setCurrentCarouselIndex((prev) => (prev + 1) % filteredProjects.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isCarouselAutoPlay, filteredProjects.length]);
+
+  const goToPreviousCarousel = () => {
+    setIsCarouselAutoPlay(false);
+    setCurrentCarouselIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+  };
+
+  const goToNextCarousel = () => {
+    setIsCarouselAutoPlay(false);
+    setCurrentCarouselIndex((prev) => (prev + 1) % filteredProjects.length);
+  };
+
+  const goToCarouselSlide = (index) => {
+    setIsCarouselAutoPlay(false);
+    setCurrentCarouselIndex(index);
+  };
+
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedCategory('All');
@@ -64,6 +108,13 @@ const ProjectsPage = () => {
   };
 
   const hasActiveFilters = searchQuery || selectedCategory !== 'All';
+
+  const colors = [
+    'from-cyan-500 to-blue-500',
+    'from-purple-500 to-pink-500',
+    'from-orange-500 to-red-500',
+    'from-pink-500 to-purple-500'
+  ];
 
   return (
     <div
@@ -169,6 +220,20 @@ const ProjectsPage = () => {
                     }`}
                 >
                   <List className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setViewMode('carousel')}
+                  className={`p-2.5 rounded-lg transition-all duration-300 ${viewMode === 'carousel'
+                    ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-md'
+                    : isDark
+                      ? 'text-gray-400 hover:text-white hover:bg-white/5'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/60'
+                    }`}
+                  title="Carousel View"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
                 </button>
               </div>
 
@@ -287,23 +352,147 @@ const ProjectsPage = () => {
 
         {/* Projects Display */}
         {filteredProjects.length > 0 ? (
-          <div
-            className={
-              viewMode === 'grid'
-                ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6'
-                : 'space-y-4 sm:space-y-6'
-            }
-          >
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                viewMode={viewMode}
-                isDark={isDark}
-                className="transform hover:scale-[1.02] transition-transform duration-300"
-              />
-            ))}
-          </div>
+          <>
+            {viewMode === 'carousel' ? (
+              // CAROUSEL VIEW
+              <div className="relative max-w-5xl mx-auto">
+                {/* Main Carousel */}
+                <div className="relative h-[500px] rounded-3xl overflow-hidden">
+                  {/* Background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/5 z-10" />
+
+                  {/* Slides */}
+                  <div className="relative w-full h-full">
+                    {filteredProjects.map((project, index) => {
+                      const color = colors[index % colors.length];
+                      return (
+                        <div
+                          key={project.id}
+                          className={`absolute inset-0 transition-opacity duration-700 ease-in-out cursor-pointer ${
+                            index === currentCarouselIndex ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onClick={() => openDetails(project)}
+                        >
+                          {/* Gradient background */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-20`} />
+
+                          {/* Content */}
+                          <div className={`relative h-full flex flex-col justify-between p-8 md:p-12 border border-white/10 rounded-3xl backdrop-blur-xl ${isDark ? 'bg-gray-900/60' : 'bg-white/60'}`}>
+                            {/* Top accent */}
+                            <div className={`absolute top-0 left-0 w-1 h-24 bg-gradient-to-b ${color} rounded-r-full`} />
+
+                            {/* Header */}
+                            <div>
+                              <div className="inline-block mb-4">
+                                <span className={`px-4 py-2 rounded-full text-sm font-semibold border ${
+                                  project.status === 'Completed'
+                                    ? 'bg-green-500/10 border-green-500/30 text-green-400'
+                                    : 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400'
+                                }`}>
+                                  {project.status}
+                                </span>
+                              </div>
+                              <h3 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                {project.title}
+                              </h3>
+                              <p className={`text-lg leading-relaxed max-w-2xl ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                {project.description}
+                              </p>
+                            </div>
+
+                            {/* Bottom content */}
+                            <div>
+                              {/* Highlights */}
+                              <div className="flex flex-wrap gap-6 mb-6">
+                                {project.highlights?.slice(0, 2).map((highlight, idx) => (
+                                  <div key={idx} className={`flex items-center gap-2 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${color}`} />
+                                    <span>{highlight}</span>
+                                  </div>
+                                ))}
+                              </div>
+
+                              {/* Tech Stack */}
+                              <div className="flex flex-wrap gap-2">
+                                {project.tech?.split(', ').slice(0, 4).map((tech, idx) => (
+                                  <span
+                                    key={idx}
+                                    className={`px-3 py-1 rounded-full text-sm border ${isDark ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300' : 'bg-cyan-100/50 border-cyan-300 text-cyan-700'}`}
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={goToPreviousCarousel}
+                  className={`absolute -left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 hover:scale-110 ${
+                    isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
+                  }`}
+                  aria-label="Previous slide"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+
+                <button
+                  onClick={goToNextCarousel}
+                  className={`absolute -right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all duration-300 hover:scale-110 ${
+                    isDark ? 'bg-gray-800 hover:bg-cyan-600 text-white' : 'bg-white hover:bg-cyan-500 text-gray-900'
+                  }`}
+                  aria-label="Next slide"
+                >
+                  <ArrowRight className="w-6 h-6" />
+                </button>
+
+                {/* Slide Indicators */}
+                <div className="flex justify-center gap-3 mt-8">
+                  {filteredProjects.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarouselSlide(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? 'w-10 h-2 bg-gradient-to-r from-cyan-500 to-purple-500'
+                          : `w-2 h-2 ${isDark ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-400 hover:bg-gray-500'}`
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Slide Counter */}
+                <div className={`text-center mt-6 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {currentCarouselIndex + 1} / {filteredProjects.length}
+                </div>
+              </div>
+            ) : (
+              // GRID/LIST VIEW - USE ProjectCard WITH MODAL
+              <div
+                className={
+                  viewMode === 'grid'
+                    ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6'
+                    : 'space-y-4 sm:space-y-6'
+                }
+              >
+                {filteredProjects.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    viewMode={viewMode}
+                    onOpenDetails={openDetails}
+                  />
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <div
             className={`text-center py-20 rounded-3xl border backdrop-blur-sm ${isDark
@@ -340,6 +529,22 @@ const ProjectsPage = () => {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <ProjectModal
+        project={selectedProject}
+        isDark={isDark}
+        open={modalOpen && !!selectedProject}
+        onClose={() => setModalOpen(false)}
+        onPreview={openPreview}
+      />
+
+      <WebsitePreviewModal
+        project={selectedProject}
+        isDark={isDark}
+        open={previewOpen && !!selectedProject}
+        onClose={() => setPreviewOpen(false)}
+      />
 
       <style jsx>{`
         .scrollbar-hide {
