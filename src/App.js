@@ -10,9 +10,12 @@ import NotFoundPage from './pages/NotFoundPage';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
+  // Only use basename if deploying to subdirectory
+  const basename = '/portfolio';
+
   return (
     <AppProvider>
-      <Router>
+      <Router basename={basename}>
         <ThemeProvider>
           <Routes>
             <Route path="/" element={<Layout />}>
