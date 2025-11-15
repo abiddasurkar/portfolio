@@ -10,12 +10,9 @@ import NotFoundPage from './pages/NotFoundPage';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
-  // Dynamic basename for deployment flexibility
-  const basename = process.env.NODE_ENV === 'production' ? '/portfolio' : '/';
-
   return (
     <AppProvider>
-      <Router basename={basename}>
+      <Router>
         <ThemeProvider>
           <Routes>
             <Route path="/" element={<Layout />}>

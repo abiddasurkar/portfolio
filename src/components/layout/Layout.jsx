@@ -107,7 +107,7 @@ const Layout = () => {
       {/* Navbar */}
       <Navbar />
 
-      {/* Page Transition Overlay - Z-30 (below modals at Z-40 and Z-50) */}
+    {/* Page Transition Overlay - Z-30 (below modals at Z-9998 and Z-9999) */}
       <div
         aria-hidden
         className={`pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 ${

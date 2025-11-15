@@ -38,7 +38,7 @@ const Navbar = () => {
   if (!mounted) {
     return (
       <>
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent py-4 sm:py-6">
+        <nav className="fixed top-0 left-0 right-0 bg-transparent py-4 sm:py-6" style={{ zIndex: 40 }}>
           <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="bg-gray-800 p-2 rounded-full border border-white/10">
@@ -61,11 +61,12 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        className={`fixed top-0 left-0 right-0 transition-all duration-700 ${
           isScrolled
             ? `${isDark ? 'bg-gray-900/90 border-white/10 shadow-purple-500/20' : 'bg-white/90 border-gray-200/50 shadow-gray-200/50'} shadow-2xl py-3 border-b backdrop-blur-2xl`
             : `${isDark ? 'bg-transparent' : 'bg-transparent'} py-4 sm:py-6`
         }`}
+        style={{ zIndex: 40 }}
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}

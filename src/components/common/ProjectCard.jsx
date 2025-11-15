@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import {
   ExternalLink,
   Github,
@@ -10,7 +11,7 @@ import {
   DollarSign,
   BookOpen,
   ShoppingCart,
-  User as UserIcon,
+  User,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
@@ -23,7 +24,7 @@ const IconFromName = ({ name, className = 'w-5 h-5 text-white' }) => {
     DollarSign: <DollarSign className={className} />,
     BookOpen: <BookOpen className={className} />,
     ShoppingCart: <ShoppingCart className={className} />,
-    User: <UserIcon className={className} />,
+    User: <User className={className} />,
   };
   return map[name] ?? <span className={className} aria-hidden>🔷</span>;
 };
@@ -205,12 +206,14 @@ const ProjectCard = ({ project, viewMode = 'grid', onOpenDetails }) => {
 const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
   useEffect(() => {
     if (!open) {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       return;
     }
 
     // Prevent scrolling when modal is open
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
 
     const onKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -218,20 +221,22 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
     window.addEventListener('keydown', onKey);
     return () => {
       window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [open, onClose]);
 
   if (!project) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {open && (
         <>
           {/* Backdrop */}
           <motion.div
             key="backdrop"
-            className="fixed inset-0 bg-black/60 z-40"
+            className="fixed inset-0 bg-black/60"
+            style={{ zIndex: 9998 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -242,7 +247,8 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
           {/* Modal Container - FIXED TO VIEWPORT */}
           <motion.div
             key="modal-container"
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+            className="fixed inset-0 flex items-center justify-center p-4 overflow-y-auto"
+            style={{ zIndex: 9999 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -388,7 +394,8 @@ const ProjectModal = ({ project, isDark, open, onClose, onPreview }) => {
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
@@ -400,11 +407,13 @@ const WebsitePreviewModal = ({ project, isDark, open, onClose }) => {
 
   useEffect(() => {
     if (!open) {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       return;
     }
 
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
 
     const onKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -412,7 +421,8 @@ const WebsitePreviewModal = ({ project, isDark, open, onClose }) => {
     window.addEventListener('keydown', onKey);
     return () => {
       window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [open, onClose]);
 
@@ -422,13 +432,14 @@ const WebsitePreviewModal = ({ project, isDark, open, onClose }) => {
 
   if (!project) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {open && (
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/60 z-40"
+            className="fixed inset-0 bg-black/60"
+            style={{ zIndex: 9998 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -437,7 +448,8 @@ const WebsitePreviewModal = ({ project, isDark, open, onClose }) => {
 
           {/* Modal Container - FIXED TO VIEWPORT */}
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 flex items-center justify-center p-4"
+            style={{ zIndex: 9999 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -510,7 +522,8 @@ const WebsitePreviewModal = ({ project, isDark, open, onClose }) => {
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
