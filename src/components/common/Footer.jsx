@@ -18,14 +18,8 @@ const Footer = () => {
       hoverColor: 'dark:hover:text-blue-400 hover:text-blue-600'
     },
     {
-      icon: Twitter,
-      href: '#',
-      label: 'Twitter',
-      hoverColor: 'dark:hover:text-blue-300 hover:text-blue-500'
-    },
-    {
       icon: Mail,
-      href: 'mailto:contact@example.com',
+      href: 'abiddasurkar@gmail.com',
       label: 'Email',
       hoverColor: 'dark:hover:text-cyan-300 hover:text-cyan-600'
     },
