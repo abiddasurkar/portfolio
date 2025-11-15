@@ -201,49 +201,81 @@ export const skills = [
     category: "Frontend Development",
     icon: Code,
     items: [
-      "React", "Next.js", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3",
-      "Tailwind CSS", "Material UI", "Kendo UI", "Redux", "Context API"
+      { name: "React", icon: "⚛️" },
+      { name: "Next.js", icon: "▲" },
+      { name: "TypeScript", icon: "🔷" },
+      { name: "JavaScript (ES6+)", icon: "🟨" },
+      { name: "HTML5", icon: "🌐" },
+      { name: "CSS3", icon: "🎨" },
+      { name: "Tailwind CSS", icon: "💨" },
+      { name: "Material UI", icon: "🧩" },
+      { name: "Kendo UI", icon: "🛠️" },
+      { name: "Redux", icon: "📦" },
+      { name: "Context API", icon: "🔗" }
     ]
   },
   {
     category: "Backend & DevOps",
     icon: Settings,
     items: [
-      "Node.js", "Express.js", "REST APIs", "Azure", "Docker",
-      "CI/CD Pipelines", "Git", "JWT", "OAuth 2.0", "Linux"
+      { name: "Node.js", icon: "🟢" },
+      { name: "Express.js", icon: "🚂" },
+      { name: "REST APIs", icon: "🔌" },
+      { name: "Azure", icon: "🔵" },
+      { name: "Docker", icon: "🐳" },
+      { name: "CI/CD Pipelines", icon: "🔄" },
+      { name: "Git", icon: "📚" },
+      { name: "JWT", icon: "🔐" },
+      { name: "OAuth 2.0", icon: "🔑" },
+      { name: "Linux", icon: "🐧" }
     ]
   },
   {
     category: "Data Visualization",
     icon: BarChart3,
     items: [
-      "AG Grid", "Highcharts", "Nivo", "Chart.js", "D3.js"
+      { name: "AG Grid", icon: "📋" },
+      { name: "Highcharts", icon: "📈" },
+      { name: "Nivo", icon: "🎯" },
+      { name: "Chart.js", icon: "📉" },
+      { name: "D3.js", icon: "✨" }
     ]
   },
   {
     category: "Testing & Tools",
     icon: TestTube,
     items: [
-      "Jest", "React Testing Library", "Cypress", "Postman",
-      "Webpack", "Vite", "ESLint", "Prettier"
+      { name: "Jest", icon: "🃏" },
+      { name: "React Testing Library", icon: "⚛️" },
+      { name: "Cypress", icon: "🌲" },
+      { name: "Postman", icon: "📬" },
+      { name: "Webpack", icon: "📦" },
+      { name: "Vite", icon: "⚡" },
+      { name: "ESLint", icon: "✅" },
+      { name: "Prettier", icon: "💎" }
     ]
   },
   {
     category: "Mobile Development",
     icon: Smartphone,
     items: [
-      "React Native", "PWA", "Responsive Design"
+      { name: "React Native", icon: "⚛️" },
+      { name: "PWA", icon: "📱" },
+      { name: "Responsive Design", icon: "📐" }
     ]
   },
   {
     category: "Cloud & Infrastructure",
     icon: Cloud,
     items: [
-      "Azure", "AWS", "Docker", "Serverless", "CI/CD Automation"
+      { name: "Azure", icon: "🔵" },
+      { name: "AWS", icon: "🟠" },
+      { name: "Docker", icon: "🐳" },
+      { name: "Serverless", icon: "⚡" },
+      { name: "CI/CD Automation", icon: "🤖" }
     ]
   }
 ];
-
 
 export const projects = [
   {

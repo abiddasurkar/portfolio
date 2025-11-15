@@ -302,119 +302,120 @@ const AboutPage = () => {
         </div>
 
         {/* 🎯 Skills & Education Tabs */}
-        <div className={`backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden mb-8 sm:mb-12 border transition-colors duration-300 ${isDark
-          ? 'dark:bg-gray-900/80 dark:border-white/10'
-          : 'bg-white/80 border-gray-200/50'
-          }`}>
-          {/* Tab Headers */}
-          <div className={`flex border-b ${isDark ? 'dark:border-gray-800' : 'border-gray-200'}`}>
-            {['skills', 'education'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`flex-1 px-4 sm:px-6 py-3 sm:py-4 font-semibold transition-all duration-500 relative overflow-hidden text-sm sm:text-base ${activeTab === tab
-                  ? isDark
-                    ? 'dark:text-white dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 dark:border-b-2 dark:border-cyan-400'
-                    : 'text-gray-900 bg-gradient-to-r from-cyan-200/50 to-purple-200/50 border-b-2 border-cyan-500'
-                  : isDark
-                    ? 'dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/50'
-                  }`}
-              >
-                {tab === 'skills' ? 'Technical Skills' : 'Education'}
-                {activeTab === tab && (
-                  <div className={`absolute inset-0 animate-pulse ${isDark ? 'dark:bg-gradient-to-r dark:from-cyan-500/10 dark:to-purple-500/10' : 'bg-gradient-to-r from-cyan-200/30 to-purple-200/30'}`} />
-                )}
-              </button>
-            ))}
-          </div>
+      <div className={`backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden mb-8 sm:mb-12 border transition-colors duration-300 ${isDark
+        ? 'dark:bg-gray-900/80 dark:border-white/10'
+        : 'bg-white/80 border-gray-200/50'
+        }`}>
+        {/* Tab Headers */}
+        <div className={`flex border-b ${isDark ? 'dark:border-gray-800' : 'border-gray-200'}`}>
+          {['skills', 'education'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`flex-1 px-4 sm:px-6 py-3 sm:py-4 font-semibold transition-all duration-500 relative overflow-hidden text-sm sm:text-base ${activeTab === tab
+                ? isDark
+                  ? 'dark:text-white dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 dark:border-b-2 dark:border-cyan-400'
+                  : 'text-gray-900 bg-gradient-to-r from-cyan-200/50 to-purple-200/50 border-b-2 border-cyan-500'
+                : isDark
+                  ? 'dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/50'
+                }`}
+            >
+              {tab === 'skills' ? 'Technical Skills' : 'Education'}
+              {activeTab === tab && (
+                <div className={`absolute inset-0 animate-pulse ${isDark ? 'dark:bg-gradient-to-r dark:from-cyan-500/10 dark:to-purple-500/10' : 'bg-gradient-to-r from-cyan-200/30 to-purple-200/30'}`} />
+              )}
+            </button>
+          ))}
+        </div>
 
-          <div className="p-4 sm:p-6 lg:p-8">
-            {activeTab === 'skills' ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                {skills.map((group, i) => {
-                  const Icon = group.icon;
-                  return (
-                    <div
-                      key={i}
-                      className={`backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-500 group ${isDark
-                        ? 'dark:bg-gray-800/50 dark:border-white/10 dark:hover:border-cyan-400/30'
-                        : 'bg-gray-100/50 border-gray-300/50 hover:border-cyan-400/50'
-                        }`}
-                    >
-                      <div className="flex items-center gap-3 mb-3 sm:mb-4">
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                        </div>
-                        <h3 className={`text-base sm:text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{group.category}</h3>
+        <div className="p-4 sm:p-6 lg:p-8">
+          {activeTab === 'skills' ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {skills.map((group, i) => {
+                const Icon = group.icon;
+                return (
+                  <div
+                    key={i}
+                    className={`backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-500 group ${isDark
+                      ? 'dark:bg-gray-800/50 dark:border-white/10 dark:hover:border-cyan-400/30'
+                      : 'bg-gray-100/50 border-gray-300/50 hover:border-cyan-400/50'
+                      }`}
+                  >
+                    <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
-                      <div className="flex flex-wrap gap-1 sm:gap-2">
-                        {group.items.map((skill, idx) => (
-                          <span
-                            key={idx}
-                            onMouseEnter={() => setHoveredSkill(skill)}
-                            onMouseLeave={() => setHoveredSkill(null)}
-                            className={`px-2 sm:px-3 py-1 rounded-lg text-xs border transition-all duration-300 ${hoveredSkill === skill
-                              ? isDark
-                                ? 'dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 dark:border-cyan-400/50 dark:text-white scale-105'
-                                : 'bg-gradient-to-r from-cyan-200 to-purple-200 border-cyan-400 text-gray-900 scale-105'
-                              : isDark
-                                ? 'dark:bg-gray-900/80 dark:text-gray-300 dark:border-white/10 dark:hover:border-cyan-400/30'
-                                : 'bg-gray-200/50 text-gray-700 border-gray-300/50 hover:border-cyan-400'
-                              }`}
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                      <h3 className={`text-base sm:text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{group.category}</h3>
                     </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="space-y-4 sm:space-y-6">
-                {education.map((edu) => {
-                  const Icon = edu.icon;
-                  return (
-                    <div
-                      key={edu.id}
-                      className={`backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-500 group ${isDark
-                        ? 'dark:bg-gray-800/50 dark:border-white/10 dark:hover:border-cyan-400/30'
-                        : 'bg-gray-100/50 border-gray-300/50 hover:border-cyan-400/50'
-                        }`}
-                    >
-                      <div className="flex items-start gap-3 sm:gap-4">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className={`text-lg sm:text-xl font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{edu.degree}</h3>
-                          <p className="text-cyan-400 font-semibold mb-2 text-base sm:text-lg">{edu.institution}</p>
-                          <div className={`flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm mb-3 sm:mb-4 backdrop-blur-sm ${isDark ? 'text-gray-400' : 'text-gray-600'
+                    <div className="flex flex-wrap gap-1 sm:gap-2">
+                      {group.items.map((skill, idx) => (
+                        <span
+                          key={idx}
+                          onMouseEnter={() => setHoveredSkill(skill)}
+                          onMouseLeave={() => setHoveredSkill(null)}
+                          className={`px-2 sm:px-3 py-1 rounded-lg text-xs border transition-all duration-300 flex items-center gap-1 ${hoveredSkill === skill
+                            ? isDark
+                              ? 'dark:bg-gradient-to-r dark:from-cyan-500/20 dark:to-purple-500/20 dark:border-cyan-400/50 dark:text-white scale-105'
+                              : 'bg-gradient-to-r from-cyan-200 to-purple-200 border-cyan-400 text-gray-900 scale-105'
+                            : isDark
+                              ? 'dark:bg-gray-900/80 dark:text-gray-300 dark:border-white/10 dark:hover:border-cyan-400/30'
+                              : 'bg-gray-200/50 text-gray-700 border-gray-300/50 hover:border-cyan-400'
+                            }`}
+                        >
+                          <span className="text-xs">{skill.icon}</span>
+                          {skill.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="space-y-4 sm:space-y-6">
+              {education.map((edu) => {
+                const Icon = edu.icon;
+                return (
+                  <div
+                    key={edu.id}
+                    className={`backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-500 group ${isDark
+                      ? 'dark:bg-gray-800/50 dark:border-white/10 dark:hover:border-cyan-400/30'
+                      : 'bg-gray-100/50 border-gray-300/50 hover:border-cyan-400/50'
+                      }`}
+                  >
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className={`text-lg sm:text-xl font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{edu.degree}</h3>
+                        <p className="text-cyan-400 font-semibold mb-2 text-base sm:text-lg">{edu.institution}</p>
+                        <div className={`flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm mb-3 sm:mb-4 backdrop-blur-sm ${isDark ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
+                          <div className={`flex items-center gap-1 rounded-lg px-2 sm:px-3 py-1 ${isDark ? 'dark:bg-white/5' : 'bg-gray-200/50'
                             }`}>
-                            <div className={`flex items-center gap-1 rounded-lg px-2 sm:px-3 py-1 ${isDark ? 'dark:bg-white/5' : 'bg-gray-200/50'
-                              }`}>
-                              <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
-                              <span>{edu.duration}</span>
-                            </div>
-                            <div className={`rounded-lg px-2 sm:px-3 py-1 ${isDark ? 'dark:bg-white/5' : 'bg-gray-200/50'
-                              }`}>
-                              {edu.location}
-                            </div>
-                            <div className={`rounded-lg px-2 sm:px-3 py-1 font-medium ${isDark ? 'dark:bg-green-500/10 dark:text-green-400' : 'bg-green-100/50 text-green-700'
-                              }`}>
-                              {edu.score}
-                            </div>
+                            <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
+                            <span>{edu.duration}</span>
+                          </div>
+                          <div className={`rounded-lg px-2 sm:px-3 py-1 ${isDark ? 'dark:bg-white/5' : 'bg-gray-200/50'
+                            }`}>
+                            {edu.location}
+                          </div>
+                          <div className={`rounded-lg px-2 sm:px-3 py-1 font-medium ${isDark ? 'dark:bg-green-500/10 dark:text-green-400' : 'bg-green-100/50 text-green-700'
+                            }`}>
+                            {edu.score}
                           </div>
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
+      </div>
 
         {/* 🏆 Certifications Section */}
         <div className={`backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-8 mb-8 sm:mb-12 border transition-colors duration-300 ${isDark
