@@ -27,7 +27,7 @@ const AboutPage = () => {
   // Fixed Quick Stats data with explicit color classes
   const quickStats = [
     {
-      count: experience.length,
+      count: '3',
       label: 'Experiences',
       color: 'cyan',
       icon: Briefcase,

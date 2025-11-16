@@ -13,6 +13,7 @@ import {
   Database,
   Monitor,
   MessageCircle,
+  Pencil,
   User
 } from 'lucide-react';
 
@@ -306,7 +307,7 @@ export const projects = [
     ],
     category: 'Web Application',
     date: '2024-01-10',
-    status: 'In Progress',
+    status: 'Completed',
     githubUrl: 'https://github.com/abiddasurkar/ecommerce-platform',
     liveUrl: 'https://abiddasurkar.github.io/ecommerce-platform'
   },
@@ -327,5 +328,59 @@ export const projects = [
     status: 'Completed',
     githubUrl: 'https://github.com/abiddasurkar/portfolio',
     liveUrl: 'https://abiddasurkar.github.io/portfolio'
+  },
+  {
+    id: 'weather-dashboard',
+    title: 'Weather Dashboard',
+    description: 'Real-time weather application with location-based forecasting and interactive data visualization.',
+    icon: Cloud,
+    tech: 'React, Next.js, Weather API, Tailwind CSS',
+    highlights: [
+      'Real-time weather data',
+      'Location-based forecasting',
+      'Interactive maps',
+      'Multi-day forecast'
+    ],
+    category: 'Web Application',
+    date: '2023-10-05',
+    status: 'Completed',
+    githubUrl: 'https://github.com/abiddasurkar/weather-dashboard',
+    liveUrl: 'https://abiddasurkar.github.io/weather-dashboard/'
+  },
+  {
+    id: 'multi-data-dashboard',
+    title: 'Multi-Data Dashboard',
+    description: 'Comprehensive analytics dashboard aggregating multiple data sources with real-time visualizations.',
+    icon: BarChart3,
+    tech: 'React, Next.js, Chart.js, MongoDB, Node.js',
+    highlights: [
+      'Real-time data aggregation',
+      'Advanced visualizations',
+      'Custom filtering',
+      'Export functionality'
+    ],
+    category: 'Data Visualization',
+    date: '2024-03-12',
+    status: 'Completed',
+    githubUrl: 'https://github.com/abiddasurkar/multi-data-dashboard',
+    liveUrl: 'https://abiddasurkar.github.io/multi-data-dashboard/'
+  },
+  {
+    id: 'collaborative-whiteboard',
+    title: 'Collaborative Whiteboard',
+    description: 'Real-time collaborative drawing and brainstorming tool with live synchronization across users.',
+    icon: Pencil,
+    tech: 'React, Node.js, WebSocket, Canvas API, Redis',
+    highlights: [
+      'Real-time collaboration',
+      'Drawing tools',
+      'Live synchronization',
+      'User presence tracking'
+    ],
+    category: 'Web Application',
+    date: '2024-02-15',
+    status: 'Completed',
+    githubUrl: 'https://github.com/abiddasurkar/collaborative-whiteboard',
+    liveUrl: null
   }
 ];
